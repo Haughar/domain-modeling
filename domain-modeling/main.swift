@@ -112,3 +112,26 @@ struct Money {
     }
 }
 
+
+class Job {
+    var title: String;
+    var salary: Double;
+    
+    init(title: String, salary: Double) {
+        self.title = title;
+        self.salary = salary;
+    }
+    
+    func calculateIncome(hours : Double) -> Double {
+        return salary * hours;
+    }
+    
+    func raise(percentage : Double) {
+        salary += salary * percentage;
+    }
+}
+
+
+
+
+
