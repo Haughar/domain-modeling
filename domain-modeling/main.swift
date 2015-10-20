@@ -142,6 +142,7 @@ print("");
 print("***Testing money (part 2) here***");
 print("The description of the first money object: \(money_one)");
 print("The description of the second money object: \(money_two)");
+print("");
 
 
 class Job : CustomStringConvertible {
@@ -194,18 +195,30 @@ print("***Testing Job (part 2) class**");
 print("Here is a job: \(student)");
 print("Here is a job: \(developer)");
 print("Here is a job: \(intern)");
+print("");
 
-class Person {
+class Person : CustomStringConvertible {
     var firstname : String;
     var lastname : String;
     var age : Int;
     var job : Job?;
     var spouse : Person?;
+    var description : String;
     
     init(firstname: String, lastname: String, age: Int) {
         self.firstname = firstname;
         self.lastname = lastname;
         self.age = age;
+        self.description = "First Name: " + self.firstname;
+        self.description += "\nLast Name: " + self.lastname;
+        self.description += "\nAge: " + String(age);
+        if (age > 16 && job != nil) {
+            self.description += "\nJob: " + job!.toString();
+        }
+        if (age > 18 && spouse != nil) {
+            self.description += "\nSpouse: " + spouse!.firstname;
+        }
+
     }
     
     init(firstname: String, lastname: String, age: Int, job: Job) {
@@ -216,6 +229,15 @@ class Person {
             self.job = nil;
         } else {
             self.job = job;
+        }
+        self.description = "First Name: " + self.firstname;
+        self.description += "\nLast Name: " + self.lastname;
+        self.description += "\nAge: " + String(age);
+        if (age > 16) {
+            self.description += "\nJob: " + job.toString();
+        }
+        if (age > 18 && spouse != nil) {
+            self.description += "\nSpouse: " + spouse!.firstname;
         }
     }
     
@@ -232,6 +254,15 @@ class Person {
             self.spouse = nil;
         } else {
             self.spouse = spouse;
+        }
+        self.description = "First Name: " + self.firstname;
+        self.description += "\nLast Name: " + self.lastname;
+        self.description += "\nAge: " + String(age);
+        if (age > 16) {
+            self.description += "\nJob: " + job.toString();
+        }
+        if (age > 18) {
+            self.description += "\nSpouse: " + spouse.firstname;
         }
     }
     
@@ -268,13 +299,30 @@ var dad = Person(firstname: "Nope", lastname: "Nopy", age: 60, job: developer, s
 print(dad.toString());
 print("");
 
-class Family {
+print("***Testing Person (part 2) class***");
+print("Here is sister: \(sister)");
+print("");
+print("Here is brother: \(brother)");
+print("");
+print("Here is mom: \(mom)");
+print("");
+print("Here is dad: \(dad)");
+print("");
+print("");
+
+class Family : CustomStringConvertible {
     var members = [Person]();
+    var description : String;
     
     init(members : [Person]) {
+        var str = "Members: ";
         for person in members {
             self.members.append(person);
+            str += person.firstname + ", ";
         }
+        self.description = "Size: " + String(members.count) + "\n";
+        self.description += "Members: \(str)";
+        
     }
     
     func householdIncome() -> Double {
@@ -315,6 +363,11 @@ print("That's a legal family: \(family.isLegalFamily())");
 print("Adding memeber to family...");
 family.haveChild("Little", lastname: "Baby");
 print("Family's income: \(family.householdIncome())");
+print("");
+
+print("***Testing Family (part 2) class**");
+print("Here is illegal family: \(illegal_family)");
+print("Here is legal family: \(family)");
 
 
 
