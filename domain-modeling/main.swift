@@ -144,13 +144,15 @@ print("The description of the first money object: \(money_one)");
 print("The description of the second money object: \(money_two)");
 
 
-class Job {
+class Job : CustomStringConvertible {
     var title: String;
     var salary: Double;
+    var description : String;
     
     init(title: String, salary: Double) {
         self.title = title;
         self.salary = salary;
+        self.description = title + ", $" + String(salary);
     }
     
     func calculateIncome(hours : Int) -> Double {
@@ -187,6 +189,11 @@ print("Calculating income of \(intern.toString()): \(intern.calculateIncome(1040
 intern.raise(0.1);
 print("Giving intern a raise of 10%: \(intern.salary)");
 print("");
+
+print("***Testing Job (part 2) class**");
+print("Here is a job: \(student)");
+print("Here is a job: \(developer)");
+print("Here is a job: \(intern)");
 
 class Person {
     var firstname : String;
