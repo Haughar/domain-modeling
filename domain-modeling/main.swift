@@ -13,6 +13,13 @@ protocol Mathmatics {
     func subtract(_: Money) -> Money;
 }
 
+extension Double {
+    var usd : Money { return Money(amount: self, currency: "USD"); }
+    var eur : Money { return Money(amount: self, currency: "EUR"); }
+    var gbp : Money { return Money(amount: self, currency: "GBP"); }
+    var can : Money { return Money(amount: self, currency: "CAN"); }
+}
+
 struct Money : CustomStringConvertible, Mathmatics {
     var amount: Double;
     var currency: String;
@@ -148,6 +155,8 @@ print("***Testing money (part 2) here***");
 print("The description of the first money object: \(money_one)");
 print("The description of the second money object: \(money_two)");
 print("");
+print("This is a money that was created with an extension: \(2.34.usd)");
+print("This is a money that was created with an extension: \(3.5.eur)");
 
 
 class Job : CustomStringConvertible {
