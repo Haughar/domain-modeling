@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Money : CustomStringConvertible {
+protocol Mathmatics {
+    func add(_: Money) -> Money;
+    func subtract(_: Money) -> Money;
+}
+
+struct Money : CustomStringConvertible, Mathmatics {
     var amount: Double;
     var currency: String;
     var description: String;
