@@ -8,9 +8,16 @@
 
 import Foundation
 
-struct Money {
+struct Money : CustomStringConvertible {
     var amount: Double;
     var currency: String;
+    var description: String;
+    
+    init(amount: Double, currency: String) {
+        self.amount = amount;
+        self.currency = currency;
+        self.description = currency + String(amount);
+    }
     
     mutating func convert(new_currency : String) {
         if new_currency == "USD" {
@@ -131,6 +138,10 @@ print("Converting to EUR: \(money_one)");
 print("Adding money one to money 2: \(money_one.add(money_two))");
 print("Subtracting money one from money 2: \(money_one.subtract(money_two))");
 print("");
+
+print("***Testing money (part 2) here***");
+print("The description of the first money object: \(money_one)");
+print("The description of the second money object: \(money_two)");
 
 
 class Job {
